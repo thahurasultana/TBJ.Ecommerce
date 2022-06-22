@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "Tbjelectronics.co.uk. || Good Quality || Affordable price!";
+}
+
+<html>
+<body style="background-image:url(/Content/Images/homeB.jpg)">
+    <style>
+        img:hover {
+            box-shadow: 0 0 10px rgb(255 255 255)
+        }
+    </style>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+    <div class="jumbotron">
+        <div class="jumbotron-content">
+            <h1 class="tbj-heading">TBJ Electronics</h1>
+            <p class="handwriting">Our goal is to create products that defy convention and inspire pride and trust in our customers. In fact, we guarantee all of our products. If you're not completely satisfied with your purchase, you can return it within 90 days. There are no better return and exchange policies in the market than ours.</p>
+            <p><a href="@Url.Action("Index", "Products")" class="btn btn-primary btn-lg handwriting">Our Products &raquo;</a></p>
+        </div>
+    </div>
+
+    <div class="row" style="color:white">
+        <div class="col-md-4">
+            <h2 class="tbj-heading">Covid-19 News</h2>
+            <hr />
+            <p style="text-align:justify">
+                We have now resumed our services after the government lifted the lockdown due to the pandemic. We hope your shopping experience is pleasant and safe.<br />
+                By clicking the "Learn more" button below you will be directed to a page on the NHS website of the UK government where you can check for the latest Covid updates.
+                <br />
+                <a href="https://coronavirus.data.gov.uk/"> <img src="~/Content/Images/covid.jpg" alt="covid-19 news" height="200" width="365" /></a>
+            </p>
+            <p><a class="btn btn-success handwriting" href="https://coronavirus.data.gov.uk/">Learn more &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2 class="tbj-heading">Awards and Recognitions</h2>
+            <hr />
+
+            <p style="text-align:justify">
+                Our services have always been in the news for our reliability and high level of service. We have won the IER 2020 award for innovation in retailing. <br />
+                Along with this award, we have consistently provided effective retailing and earned a high level of customer satisfaction for our products.<br /><br />
+                <img src="~/Content/Images/Award.jpg" alt="award" height="200" width="370" />
+            </p>
+        </div>
+        <div class="col-md-4">
+            <h2 class="tbj-heading">Our People</h2>
+            <hr />
+
+            <p style="text-align:justify">People are our strength. We have the best staff of all time. We believe in providing everything employee needs while also receiving what employee can give back for reaching organizational objectives and goals.</p>
+            <p>
+                <table>
+
+                    <tr>
+                        <td><img src="~/Content/Images/People/people1.jpg" alt="People" height="150" width="170" /></td>
+                        <td><img src="~/Content/Images/People/people2.jpg" alt="People" height="150" width="170" /></td>
+
+
+                    </tr>
+                    <tr>
+                        <td><img src="~/Content/Images/People/people3.jpg" alt="People" height="150" width="170" /></td>
+                        <td><img src="~/Content/Images/People/people4.jpg" alt="People" height="150" width="170" /></td>
+                    </tr>
+
+                </table>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

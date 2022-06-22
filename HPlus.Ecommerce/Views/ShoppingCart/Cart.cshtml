@@ -1,0 +1,77 @@
+﻿@using TBJ.Ecommerce.Models
+
+@{
+    ViewBag.Title = "Tbjelectronics.co.uk Shopping Basket";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<html>
+<body style="background: url(/Content/Images/cartB.jpg) no-repeat; background-size: cover;">
+   
+        <center>
+            <h1 class="tbj-heading" style="background-color:white;width:20%">Shopping Cart</h1>
+            <div class="row">
+                <div class="col-12">
+                    <div class="table">
+                        <table class="table" style="width:50%;background-color:darkslategrey;color:white;background-image:url(/Content/Images/homeB.jpg)">
+                            <thead>
+                                <tr style="color:lightgoldenrodyellow">
+                                    <th scope="col" class="text-center"> </th>
+                                    <th scope="col">Product</th>
+                                    <th scope="col" class="text-center">Quantity</th>
+                                    <th></th>
+                                    <th scope="col" class="text-center">Price</th>
+                                    <th scope="col" class="text-center">Sub-Total</th>
+
+                                    <th> </th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (Item item in (List<Item>)Session["cart"])
+                                {
+                                <tr>
+                                    <td><img src="@Url.Content(item.Product.ProductImage)" width="50" height="50" /> </td>
+                                    <td>@item.Product.ProductName</td>
+                                    <td>@item.Quantity</td>
+                                    <td> <a href='@Url.Action("AddQuantity", "ShoppingCart", new { id = item.Product.ProductId }, null)' class="btn btn-sm btn-success" ><i class="fa fa-plus"></i></a>
+                                   <a href='@Url.Action("RemoveQuantity", "ShoppingCart", new { id = item.Product.ProductId }, null)' class="btn btn-sm btn-danger" ><i class="fa fa-minus"></i></a>
+
+                                    </td>
+
+                                    <td class="text-right">£@item.Product.CurrentPrice.ToString(format: "#,##0.00")</td>
+
+                                    <td>  <strong>£@(item.Product.CurrentPrice * item.Quantity)</strong></td>
+                                    <td>
+                                        <a href='@Url.Action("Delete", "ShoppingCart", new { id = item.Product.ProductId }, null)' class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                    </td>
+
+                                </tr>
+
+
+                                }
+                            
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-lg-offset-1">
+                    <a href='@Url.Action("Index", "Products")' class="btn btn-primary btn-lg btn-block" role="button" style="width:50%;font-family:Calibri">Continue Shopping</a>
+                </div>
+                <div class="col-lg-4 col-lg-offset-2">
+                    <a href="#" class="btn btn-lg btn-block btn-success text-uppercase" role="button" style="width: 50%; font-family: Calibri">Checkout</a>
+                </div>
+            </div>
+        </center>
+    
+   
+</body>
+
+
+</html>
+
+   

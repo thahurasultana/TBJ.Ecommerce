@@ -1,0 +1,65 @@
+﻿@using TBJ.Ecommerce.Models;
+@{
+    ViewBag.Title = "Tbjelectronics.co.uk || Electronics";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html>
+<body style="background-image:url(/Content/Images/productsB.jpg)">
+    <!--Form used for Search Operation to be performed based on Product Name
+        (The Index Action of NewProdcutsController contains the logic for the same)-->
+    <form style="float:right;margin-top:2rem">
+        @using (Html.BeginForm("Index", "Products", FormMethod.Get))
+        {
+            @Html.TextBox("search")
+            <input type="submit" value="search" />
+        }
+    </form><br />
+    <!-- 17-24 is used to display "back to products" button when something is searched and no matching is found or
+        even if any matching is found, to be able to come back to products list this button appears only when a string is passed
+        to be searched and search button is pressed-->
+    @if ((string)Session["search"] != "" && Session["search"] != null)
+    {
+        <a href='@Url.Action("Index", "Products")' class="fa fa-arrow-left" style="float:right;margin-right:1rem"> Back to Products</a>
+    }
+    else { }
+    <h1 class="tbj-heading">Our Products</h1>
+
+    @foreach (Product item in ViewBag.listProducts)
+    {
+
+        <div class="col-md-3 col-sm-6">
+            <div class="product-grid">
+                <div class="product-image">
+                    <a href='@Url.Action("Details", "Products", new { id = item.ProductId })'>
+                        <img src="@Url.Content(item.ProductImage)" />
+                    </a>
+                    <ul class="social">
+                        <li><a href='@Url.Action("Details", "Products", new { id = item.ProductId })' data-tip="Quick View"><i class="fa fa-search"></i></a></li>
+                        <li><a href="" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
+                        <li><a href='@Url.Action("AddToCart", "ShoppingCart", new {id=item.ProductId})' data-tip="Add To Cart"><i class="fa fa-shopping-cart"></i></a></li>
+                    </ul>
+                    <span class="product-new-label">Sale</span>
+                    <span class="product-discount-label">@Html.DisplayFor(modelItem => item.Discount)%</span>
+                </div>
+                <ul class="rating">
+                    @for (var i = 1; i <= item.StarRating; i++)
+                    {
+                        <li class="fa fa-star"></li>
+                    }
+                    @for (var i = item.StarRating; i < 5; i++)
+                    {
+                        <li class="fa fa-star disable"></li>
+                    }
+                </ul>
+                <div class="product-content">
+                    <h3 class="title"><a href='@Url.Action("Details", "Products", new { id = item.ProductId })'>@Html.DisplayFor(modelItem => item.ProductName)</a></h3>
+                    <div class="price">
+                        £ @item.CurrentPrice.ToString(format: "#,##0.00")
+                        <span>£ @item.FullPrice.ToString(format: "#,##0.00")</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</body>
+</html>
